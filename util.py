@@ -463,8 +463,8 @@ EMBEDDINGS = "./pretrained_model/pretrained_embeddings.pth"
 WORD2I = "./pretrained_model/word2i.pth"
 LABEL2I = "./pretrained_model/label2i.pth"
 
-def save_model(model=MODEL, embeddings=EMBEDDINGS, word2i=WORD2I, label2i=LABEL2I):
-    torch.save(model.state_dict(), MODEL)
+def save_model(model, path=MODEL, embeddings=EMBEDDINGS, word2i=WORD2I, label2i=LABEL2I):
+    torch.save(model.state_dict(), path)
     torch.save(embeddings, EMBEDDINGS)
     torch.save(word2i, WORD2I)
     torch.save(label2i, LABEL2I)
