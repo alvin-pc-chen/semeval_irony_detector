@@ -1,18 +1,19 @@
+[<img src="assets/irony_title_card.png">](https://alvin-pc-chen.github.io/projects/irony/)
+
+An in depth explanation for this project can be found [here](https://alvin-pc-chen.github.io/projects/irony/) 
 ### Summary
  - Learned to train, save, and load PyTorch modules and LSTMs
  - Learned to use spaCy tokenizers and encode text data with static embeddings
  - Learned to conduct hyperperameter tuning and evaluation for optimal results
 
 ### Use
- 1. for ideal results use python=3.9
- 2. run pip install -r requirements.txt in the repo root directory
- 3. run the train_from_scratch.ipynb notebook as is
+ for ideal results use python=3.9
 
 ### Project Details
- The Irony Detector ([a SemEval 2018 subtask](https://github.com/Cyvhee/SemEval2018-Task3)) was completed as part of my NLP class at CU Boulder in Fall 2023. In this project, I created a spaCy tokenizer to learn the vocabulary across the dataset (a selection of tweets), after which I used [GloVe embeddings](https://nlp.stanford.edu/projects/glove/) to encode the data. The vocabulary is saved into a text file for future use while out of vocabulary words are initialized randomly using the [Xavier](https://pytorch.org/docs/stable/_modules/torch/nn/init.html#xavier_uniform_) embedding initialization method, which creates randomized embeddings for more efficient learning (compared to zeroed weights). I then developed a language model module using PyTorch, comprising several BiLSTM layers, a linear layer, and a softmax layer to produce the classification result. Finally, I set up a training loop and trained the model using a variety of hyperperameters in order to get the ideal results, achieving an F1 of roughly 0.70 which was the [top result](https://competitions.codalab.org/competitions/17468#results) on the SemEval subtask (see Evaluation Task A). For this model, I wrote a function to save the model weights, embedding weights, and index so that the tokenizer and the model can be initialized from scratch.
+ I completed the Irony Detector ([a SemEval 2018 subtask](https://github.com/Cyvhee/SemEval2018-Task3)) as part of the NLP course at CU Boulder. In this project, I created a spaCy tokenizer to learn the vocabulary across the dataset (a selection of tweets), after which I used [GloVe embeddings](https://nlp.stanford.edu/projects/glove/) to encode the data. The vocabulary is saved into a text file for future use while out of vocabulary words are initialized randomly using the [Xavier](https://pytorch.org/docs/stable/_modules/torch/nn/init.html#xavier_uniform_) embedding initialization method, which creates randomized embeddings for more efficient learning (compared to zeroed weights). I then developed a language model module using PyTorch, comprising several BiLSTM layers, a feedforward layer, and a softmax layer to produce the classification result. Finally, I set up a training loop and trained the model using a variety of hyperperameters in order to get the ideal results, achieving an F1 of roughly 0.70 which was the [top result](https://competitions.codalab.org/competitions/17468#results) on the SemEval subtask (see Evaluation Task A). For this model, I wrote a function to save the model weights, embedding weights, and index so that the tokenizer and the model can be initialized from scratch.
 
 ### Hyperparameter Results
-| **Test Avg F1** | **Epochs** | **Learning Rate** | **Optimizer** | **Hidden Layers** | **Weight Decay** |
+| **Test Avg F1** | **Epochs** | **Learning Rate** | **Optimizer** | **Hidden Layer Dimension** | **Weight Decay** |
 |-----------------|------------|-------------------|---------------|-------------------|------------------|
 | **0.7000**      | 20         | 0.00005           | AdamW         | 128               | 0                |
 | **0.6947**      | 20         | 0.00005           | AdamW         | 256               | 0                |
